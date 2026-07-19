@@ -1,0 +1,188 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ------------------------------------------------------------------ */
+/* Momento design tokens                                               */
+/* Warm paper, storybook serif, soft blush accent.                     */
+/* ------------------------------------------------------------------ */
+
+:root {
+  /* Palette */
+  --paper: #fdfbf8;
+  --ink: #2c2521;
+  --stone: #8a7f76;
+  --sand: #f1e9dd;
+  --sand-deep: #e6dccc;
+  --blush: #efd9d3;
+  --rose: #c08b80;
+  --rose-deep: #a97065;
+
+  /* Semantic (shadcn-compatible) */
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: #ffffff;
+  --card-foreground: var(--ink);
+  --popover: #ffffff;
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--paper);
+  --secondary: var(--sand);
+  --secondary-foreground: var(--ink);
+  --muted: var(--sand);
+  --muted-foreground: var(--stone);
+  --accent: var(--blush);
+  --accent-foreground: var(--rose-deep);
+  --destructive: #b3564a;
+  --destructive-foreground: #ffffff;
+  --border: #ece4d8;
+  --input: #ece4d8;
+  --ring: var(--rose);
+
+  /* Shape & rhythm — mirrors the collage spec (20px radius, 16px gutter) */
+  --radius: 20px;
+  --gutter: 16px;
+
+  /* Elevation — soft, warm, never harsh */
+  --shadow-soft: 0 1px 2px rgb(44 37 33 / 0.04), 0 8px 24px rgb(44 37 33 / 0.06);
+  --shadow-lifted: 0 2px 4px rgb(44 37 33 / 0.05), 0 16px 40px rgb(44 37 33 / 0.1);
+}
+
+.dark {
+  --paper: #191512;
+  --ink: #f2ece5;
+  --stone: #9c9188;
+  --sand: #241f1b;
+  --sand-deep: #2e2822;
+  --blush: #3a2c28;
+  --rose: #c08b80;
+  --rose-deep: #d4a196;
+
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: #201b17;
+  --card-foreground: var(--ink);
+  --popover: #201b17;
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--paper);
+  --secondary: var(--sand);
+  --secondary-foreground: var(--ink);
+  --muted: var(--sand);
+  --muted-foreground: var(--stone);
+  --accent: var(--blush);
+  --accent-foreground: var(--rose-deep);
+  --border: #322b25;
+  --input: #322b25;
+  --ring: var(--rose);
+
+  --shadow-soft: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px rgb(0 0 0 / 0.35);
+  --shadow-lifted: 0 2px 4px rgb(0 0 0 / 0.35), 0 16px 40px rgb(0 0 0 / 0.5);
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-stone: var(--stone);
+  --color-sand: var(--sand);
+  --color-sand-deep: var(--sand-deep);
+  --color-blush: var(--blush);
+  --color-rose: var(--rose);
+  --color-rose-deep: var(--rose-deep);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-xl: var(--radius);
+  --radius-lg: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 8px);
+  --radius-sm: calc(var(--radius) - 12px);
+
+  --shadow-soft: var(--shadow-soft);
+  --shadow-lifted: var(--shadow-lifted);
+
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-sans: var(--font-figtree), system-ui, sans-serif;
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: var(--blush);
+    color: var(--rose-deep);
+  }
+
+  /* Visible focus for keyboard users, invisible for pointer users */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer utilities {
+  /* Storybook chapter heading — the app's signature type treatment */
+  .chapter-heading {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    font-variation-settings: "SOFT" 60, "opsz" 72;
+  }
+
+  .display {
+    font-family: var(--font-display);
+    font-variation-settings: "SOFT" 40, "opsz" 40;
+    letter-spacing: -0.01em;
+  }
+
+  /* Respect notched devices behind the bottom nav */
+  .pb-nav {
+    padding-bottom: calc(88px + env(safe-area-inset-bottom));
+  }
+}
