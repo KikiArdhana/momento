@@ -1,99 +1,185 @@
 # Momento
 
-A digital memory book. Your moments, told like a story — not stored like files.
+### Your memories, told like a story.
 
-**Stack:** Next.js 16 (App Router) · TypeScript (strict) · Tailwind v4 · Framer Motion · Supabase (Postgres, Auth, Storage) · Google Maps · Vercel
+Momento is a digital memory book designed to turn photos and personal moments into **stories you can revisit**, rather than simply storing them as files.
 
----
+Instead of organizing memories into endless folders, Momento brings albums, photos, locations, timelines, and personal moments together in a visual, story-driven experience.
 
-## Quick start
-
-```bash
-pnpm install
-cp .env.example .env.local     # fill in the values below
-pnpm dev                       # http://localhost:3000
-```
-
-### 1. Supabase
-
-1. Create a project at supabase.com → Settings → API → copy the **Project URL**
-   and **anon key** into `.env.local`.
-2. Run the migrations **in order** (SQL Editor, or `supabase db push` via CLI):
-   - `supabase/migrations/20260718000001_initial_schema.sql`
-   - `supabase/migrations/20260718000002_storage.sql`
-   - `supabase/migrations/20260718000003_photo_size.sql`
-
-### 2. Google sign-in
-
-1. Google Cloud Console → Credentials → **OAuth client ID** (Web application).
-2. Authorized redirect URI: `https://<project-ref>.supabase.co/auth/v1/callback`
-3. Supabase → Authentication → Providers → Google → paste client ID + secret.
-4. Supabase → Authentication → URL Configuration:
-   - Site URL: `http://localhost:3000`
-   - Redirect URLs: add `http://localhost:3000/auth/callback`
-     (add your Vercel domain equivalents when you deploy).
-
-### 3. Sample data (optional but recommended)
-
-Sign in with Google **once**, then run `supabase/seed.sql` in the SQL Editor.
-It attaches 5 sample albums (~36 photos, portrait + landscape mix) to your
-account so Home, Timeline, Map, the collage, and stats are instantly alive.
-Safe to re-run; delete the sample albums in-app whenever you like.
-
-### 4. Google Maps (for the Map tab)
-
-Google Cloud Console → enable **Maps JavaScript API** → create an API key →
-put it in `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY`. Without it the Map tab shows a
-friendly notice; everything else works.
-
-### 5. Deploy (Vercel)
-
-Import the repo, set the three env vars, deploy. Then add
-`https://your-app.vercel.app` as Site URL / redirect URL in Supabase.
+> **Your moments, told like a story — not stored like files.**
 
 ---
 
-## Scripts
+## ✨ Overview
 
-- `pnpm dev` / `pnpm build` / `pnpm start`
-- `pnpm typecheck` — strict TS
-- `pnpm lint`
+Momento is built around the idea that memories should feel **personal, visual, and easy to revisit**.
 
-## Architecture
+The application combines:
 
-```
+- 📸 Photo albums
+- 🖼️ Automatic photo collages
+- 🗺️ Location-based memories
+- 📅 Timeline & chronological browsing
+- 👤 Personal profile
+- 📊 Memory statistics
+- 🔐 Google authentication
+- ☁️ Cloud photo storage
+
+The focus is on creating a **calm, visual experience for remembering**, rather than treating photos like ordinary files.
+
+---
+
+## 📱 Main Experience
+
+### 🏠 Home
+
+A visual overview of your memories.
+
+- Recent albums
+- Featured moments
+- Photo highlights
+- Memory statistics
+- Quick access to important moments
+
+The Home experience is designed to make your memories feel immediately accessible without having to search through folders.
+
+---
+
+### 📖 Albums
+
+Organize memories into meaningful collections.
+
+Each album can contain its own collection of photos and moments, making it easy to separate memories by:
+
+- Trips
+- Events
+- People
+- Places
+- Personal milestones
+- Everyday moments
+
+---
+
+### 🖼️ Automatic Collage
+
+One of Momento's core features is its **automatic collage engine**.
+
+Instead of displaying every photo in a simple grid, Momento generates a justified-row layout that adapts to the photos' aspect ratios.
+
+The result creates a more editorial, story-like presentation.
+
+Features include:
+
+- Automatic layout generation
+- Preserved photo aspect ratios
+- Landscape hero images
+- Consistent spacing
+- Rounded corners
+- Deterministic layouts
+
+The same album produces the same layout, while different albums can have different visual rhythms.
+
+---
+
+### 🗺️ Memory Map
+
+Photos can be connected to their locations and explored through an interactive map.
+
+The Map experience allows memories to become connected to **where they happened**, giving the collection a more geographical perspective.
+
+Powered by Google Maps.
+
+---
+
+### 📅 Timeline
+
+Browse memories chronologically.
+
+The timeline provides another way to revisit your photos without relying entirely on albums, making it easier to rediscover older moments.
+
+Photos are loaded progressively through infinite scrolling for a smoother browsing experience.
+
+---
+
+### 👤 Profile
+
+Personal settings and preferences in one place.
+
+- Google account
+- Theme preference
+- Dark mode
+- Personal settings
+- Application preferences
+
+Theme preferences are persisted and applied before the page is rendered to avoid unnecessary visual flickering.
+
+---
+
+## 🎨 Design Philosophy
+
+Momento is designed around a **visual-first and story-driven experience**.
+
+The interface focuses on:
+
+- Minimal visual clutter
+- Large, immersive imagery
+- Editorial-style layouts
+- Smooth transitions
+- Responsive design
+- Dark mode
+- Mobile-first interactions
+
+The goal is to make browsing memories feel closer to **looking through a personal photo book** than navigating a file manager.
+
+---
+
+## 🧩 Tech Stack
+
+### Frontend
+
+![Next.js](https://img.shields.io/badge/Next.js_16-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS_v4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white)
+
+### Backend & Infrastructure
+
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+
+### Integrations
+
+![Google Maps](https://img.shields.io/badge/Google_Maps-4285F4?style=for-the-badge&logo=googlemaps&logoColor=white)
+![Google](https://img.shields.io/badge/Google_Auth-4285F4?style=for-the-badge&logo=google&logoColor=white)
+
+---
+
+## 🏗️ Architecture
+
+Momento uses a feature-oriented architecture designed to keep UI, business logic, and data access separated.
+
+```text
 src/
-  app/                # routes only — no business logic
-    (app)/            # 5-tab shell: Home, Map, + Create, Timeline, Profile
-    login/  auth/     # public auth surface
-  components/         # shared presentational (navigation, ui, theme)
-  features/           # vertical slices: albums, collage, photos, create, map
-  services/           # server data access — the only place that queries the DB
-  hooks/              # shared custom hooks
-  lib/                # pure utilities (collage engine, image compression, …)
-  types/              # domain types + typed DB schema
-  config/             # static config (nav)
+├── app/
+│   ├── (app)/             # Main application shell
+│   ├── login/             # Authentication
+│   └── auth/              # Auth callbacks
+│
+├── components/            # Shared UI & navigation
+├── features/              # Feature-specific modules
+│   ├── albums/
+│   ├── collage/
+│   ├── photos/
+│   ├── create/
+│   └── map/
+│
+├── services/              # Database & server data access
+├── hooks/                 # Shared custom hooks
+├── lib/                   # Pure utilities
+├── types/                 # Domain & database types
+└── config/                # Static application configuration
+
 supabase/
-  migrations/         # schema, RLS, storage policies
-  seed.sql            # sample data
-```
-
-Import rule: `app → features → services/components → lib/types`. Never upward.
-
-## Feature notes
-
-- **Auto Collage Engine** (`src/lib/collage.ts`) — a pure, deterministic
-  justified-rows algorithm. Same album ⇒ same collage (seeded by album id);
-  different albums ⇒ different rhythm. Aspect ratios are preserved exactly;
-  landscape favorites can become full-bleed hero rows. 16px gaps, 20px radius.
-- **Uploads** compress client-side (max edge 2048px, WebP q0.82) before
-  hitting Storage; per-photo status + overall progress bar.
-- **Security** — RLS on every table (owner-only), storage writes locked to
-  `photos/{user_id}/…`. Reads are public-by-URL (unguessable UUID paths).
-- **Dark mode** — toggle on Profile; saved preference applied pre-paint.
-- **Infinite scroll** — album photos page in at 60/batch via an
-  IntersectionObserver sentinel.
-- **Offline** — installable PWA manifest; images/pages rely on standard
-  HTTP + next/image caching. (A full offline service worker is not included.)
-- **A11y** — keyboard nav throughout (viewer: ←/→/Esc), ARIA labels/roles,
-  visible focus rings, `prefers-reduced-motion` respected globally.
+├── migrations/            # Database schema & security policies
+└── seed.sql               # Sample data
