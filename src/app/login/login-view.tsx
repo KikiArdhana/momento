@@ -47,7 +47,7 @@ export function LoginView() {
             variants={fadeUp}
             className="mx-auto mt-4 max-w-[260px] text-[15px] leading-relaxed text-stone"
           >
-            Your moments, told like a story — not stored like files.
+            Your memories, brought together into stories worth remembering.
           </motion.p>
 
           <motion.div variants={fadeUp} className="mt-10">
